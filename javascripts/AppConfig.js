@@ -1,5 +1,11 @@
 'use strict';
 
+//can run own code in app.run
+app.run(function (FIREBASE_CONFIG) {
+  firebase.initializeApp(FIREBASE_CONFIG);
+});
+
+//cannot run own code in app.config
 app.config(function ($routeProvider) {
   $routeProvider
     .when("/auth", {
