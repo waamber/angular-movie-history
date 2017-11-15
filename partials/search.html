@@ -6,4 +6,20 @@
     <input ng-keypress="enterPush($event)" id='search-bar' type="text" class="form-control" placeholder="Search..." aria-describedby="search-query">
   </div>
 
+
+  <div id="movies">
+    <div ng-repeat="movie in movies" class="col-sm-6 col-md-4 movie">
+      <div class='thumbnail'>
+        <img class="poster_path" ng-src='{{image_url}}/w342/{{movie.poster_path}}' alt=''>
+        <div class='caption'>
+          <h3 class="title">{{movie.title}}</h3>
+          <p class="overview">{{movie.overview}}</p>
+          <p>
+            <a href='#' class='btn btn-primary review' role='button'>Review</a>
+            <a class='btn btn-default wishlist' role='button'>Wishlist</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
