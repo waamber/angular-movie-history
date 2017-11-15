@@ -13,13 +13,16 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" ng-show="!uid">
         <li><a ng-href="#!/auth">Authenticate</a></li>
-        <li><a ng-href="#!/wishlist">My Wishlist</a></li>
-        <li><a ng-href="#!/rated">Rated</a></li>
-        <li><a ng-href="#!/search">Search</a></li>
       </ul>
     </div>
+    <ul class="nav navbar-nav navbar-right" ng-show="uid">
+      <li><a ng-href="#!/wishlist">My Wishlist</a></li>
+      <li><a ng-href="#!/rated">Rated</a></li>
+      <li><a ng-href="#!/search">Search</a></li>
+      <li><a ng-href="#!/logout">Logout</a></li>
+    </ul>
     <!-- /.navbar-collapse -->
   </div>
   <!-- /.container-fluid -->
