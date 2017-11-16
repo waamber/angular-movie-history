@@ -5,5 +5,13 @@ app.service("AuthService", function () {
     const provider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithPopup(provider);
   };
-  return { authenticateGoogle }; //return functions that you want to use 
+
+  const isAuthenticated = () => {
+    return firebase.auth().currentUser ? true : false;
+  };
+
+  const logout = () => {
+    firebase.auth().signOut();
+  };
+  return { authenticateGoogle, isAuthenticated, logout }; //return functions that you want to use 
 });
