@@ -33,4 +33,14 @@ app.controller("SearchCtrl", function ($location, $rootScope, $scope, MovieServi
       console.log("Error in savedRated", error);
     });
   };
+
+  $scope.saveWishlist = (tmdbMovie) => {
+    let newMovie = createMovie(tmdbMovie);
+    newMovie.isWatched = false;
+    MovieService.postNewMovie(newMovie).then(() => {
+      $location.path('/wishlist');
+    }).catch((error) => {
+      console.log("Error in savedRated", error);
+    });
+  };
 });
