@@ -1,7 +1,7 @@
 'use strict';
 
 app.service("MovieService", function ($http, $q, FIREBASE_CONFIG) {
-  
+
   const getRatedMovies = (userUid) => {
     let movies = [];
     return $q((resolve, reject) => {
@@ -37,7 +37,12 @@ app.service("MovieService", function ($http, $q, FIREBASE_CONFIG) {
       });
     });
   };
-  return { getRatedMovies, getWishListMovies };
+
+  const postNewMovie = (newMovie) => {
+    return $http.post(`${FIREBASE_CONFIG.databaseURL}/movies.json`, JSON.stringify(newMovie));
+  };
+
+  return { getRatedMovies, getWishListMovies, postNewMovie };
 });
 
 
