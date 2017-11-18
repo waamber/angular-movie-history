@@ -11,7 +11,7 @@ app.controller("RatedCtrl", function ($rootScope, $scope, MovieService) {
     });
   };
 
-  getMovies(); //gets movies on ctrl load
+  getMovies();
 
   $scope.deleteMovie = (movieId) => {
     MovieService.deleteMovie(movieId).then((result) => {
@@ -21,5 +21,16 @@ app.controller("RatedCtrl", function ($rootScope, $scope, MovieService) {
     });
   };
 
+  $scope.starChange = (event, movie) => {
+    if (event.rating) {
+      movie.rating = event.rating;
+      let updatedMovie = MovieService.createMovieObject(movie);
+      MovieService.updateMovie(updatedMovie, movie.id).then(() => {
+        getMovies();
+      }).catch((error) => {
+        console.log("Error in starChange", error);
+      });
+    }
+  };
 
 });
