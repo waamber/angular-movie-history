@@ -1,6 +1,5 @@
 'use strict';
 
-
 app.controller("SearchCtrl", function ($location, $rootScope, $scope, MovieService, tmdbService) {
   $scope.movies = [];
 
@@ -14,19 +13,11 @@ app.controller("SearchCtrl", function ($location, $rootScope, $scope, MovieServi
     }
   };
 
-  const createMovie = (movie) => {
-    return {
-      "title": movie.title,
-      "overview": movie.overview,
-      "poster_path": movie.poster_path,
-      "rating": 0,
-      "isWatched": true,
-      "uid": $rootScope.uid
-    };
-  };
-
   $scope.savedRated = (tmdbMovie) => {
-    let newMovie = createMovie(tmdbMovie);
+    tmdbMovie.uid = $rootScope.uid;
+    tmdbMovie.isWatched = true;
+    tmdbMovie.rated = 0;
+    let newMovie = MovieService.createMovieObject(tmdbMovie);
     MovieService.postNewMovie(newMovie).then(() => {
       $location.path('/rated');
     }).catch((error) => {
@@ -35,8 +26,10 @@ app.controller("SearchCtrl", function ($location, $rootScope, $scope, MovieServi
   };
 
   $scope.saveWishlist = (tmdbMovie) => {
-    let newMovie = createMovie(tmdbMovie);
-    newMovie.isWatched = false;
+    tmdbMovie.uid = $rootScope.uid;
+    tmdbMovie.isWatched = false;
+    tmdbMovie.rated = 0;
+    let newMovie = MovieService.createMovieObject(tmdbMovie);
     MovieService.postNewMovie(newMovie).then(() => {
       $location.path('/wishlist');
     }).catch((error) => {
