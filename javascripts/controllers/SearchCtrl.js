@@ -36,4 +36,5 @@ app.controller("SearchCtrl", function ($location, $rootScope, $scope, MovieServi
       console.log("Error in savedRated", error);
     });
   };
+
 });
